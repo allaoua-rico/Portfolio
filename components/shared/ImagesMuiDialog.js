@@ -25,7 +25,7 @@ export default function ImagesMuiDialog({ imgs, link }) {
         open={openDialog}
         onClose={() => setOpenDialog(false)}
       >
-        <DialogContent className="p-6">
+        <DialogContent className="p-6 min-h-[300px]">
           <div className="flex justify-end pb-5">
             <button className="" onClick={() => setOpenDialog(false)}>
               <IoMdClose className="w-6 h-6 fill-gray-500" />
