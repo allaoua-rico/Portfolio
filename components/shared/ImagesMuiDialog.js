@@ -41,13 +41,15 @@ export default function ImagesMuiDialog({ imgs, link }) {
 function DialogImgsSwiper({ imgs }) {
   return (
     <Swiper autoHeight modules={[EffectFade]} effect="fade">
-      {React.Children.toArray(
-        imgs.map((img) => (
-          <SwiperSlide>
-            <img src={img} alt={img} className="object-cover border rounded shadow-sm" />
-          </SwiperSlide>
-        ))
-      )}
+      {imgs.map((img, i) => (
+        <SwiperSlide key={img + i}>
+          <img
+            src={img}
+            alt={img}
+            className="object-cover border rounded shadow-sm"
+          />
+        </SwiperSlide>
+      ))}
       <CustomNavigation />
     </Swiper>
   );

@@ -16,32 +16,33 @@ export default function Projects() {
     >
       <h2 className={styles.title}>Projects</h2>
       <div className="flex flex-col items-center">
-        {React.Children.toArray(
-          projectsInfos.map((project) => (
-            <div className="flex flex-row gap-y-5 my-24 relative">
-              <ImagesMuiDialog
-                imgs={project.imgs}
-                link={project.links.deployed}
-              />
+        {projectsInfos.map((project, i) => (
+          <div
+            key={project.links.deployed + i}
+            className="flex flex-row gap-y-5 my-24 relative"
+          >
+            <ImagesMuiDialog
+              imgs={project.imgs}
+              link={project.links.deployed}
+            />
 
-              <ProjectInfos>
-                <ProjectTitles project={project} />
+            <ProjectInfos>
+              <ProjectTitles project={project} />
 
-                <ProjectInfosCard>
-                  <div className="text-white font-semibold">
-                    {project.description}
-                  </div>
-                  <ProjectInfosFctsList list={project.fctList} />
-                </ProjectInfosCard>
+              <ProjectInfosCard>
+                <div className="text-white font-semibold">
+                  {project.description}
+                </div>
+                <ProjectInfosFctsList list={project.fctList} />
+              </ProjectInfosCard>
 
-                <ProjectBottom>
-                  <ProjectInfosTechsList list={project.techs} />
-                  <ProjectInfosLink links={project.links} />
-                </ProjectBottom>
-              </ProjectInfos>
-            </div>
-          ))
-        )}
+              <ProjectBottom>
+                <ProjectInfosTechsList list={project.techs} />
+                <ProjectInfosLink links={project.links} />
+              </ProjectBottom>
+            </ProjectInfos>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -71,15 +72,11 @@ function ProjectTitles({ project }) {
 function ProjectInfosFctsList({ list }) {
   return (
     <ul className="list-disc">
-      {React.Children.toArray(
-        list?.map((el) => {
-          return (
-            <li className="text-white">
-              <div className="text-[#d4d9e8]">{el}</div>
-            </li>
-          );
-        })
-      )}
+      {list?.map((el, i) => (
+        <li key={el + i} className="text-white">
+          <div className="text-[#d4d9e8]">{el}</div>
+        </li>
+      ))}
     </ul>
   );
 }
@@ -116,9 +113,11 @@ function ProjectInfosTechsList({ list }) {
       flex space-x-3 md:justify-end 
       md:max-w-xs"
     >
-      {React.Children.toArray(
-        list?.map((el) => <span className="whitespace-nowrap">{el}</span>)
-      )}
+      {list?.map((el, i) => (
+        <span key={el + i} className="whitespace-nowrap">
+          {el}
+        </span>
+      ))}
     </div>
   );
 }
