@@ -27,7 +27,7 @@ export default function ImagesMuiDialog({ imgs, link }) {
       >
         <DialogContent className="p-6 min-h-[300px]">
           <div className="flex justify-end pb-5">
-            <button className="" onClick={() => setOpenDialog(false)}>
+            <button onClick={() => setOpenDialog(false)}>
               <IoMdClose className="w-6 h-6 fill-gray-500" />
             </button>
           </div>
@@ -40,7 +40,7 @@ export default function ImagesMuiDialog({ imgs, link }) {
 
 function DialogImgsSwiper({ imgs }) {
   return (
-    <Swiper autoHeight modules={[EffectFade]} effect="fade">
+    <Swiper  modules={[EffectFade]} effect="fade">
       {imgs.map((img, i) => (
         <SwiperSlide key={img + i}>
           <img
