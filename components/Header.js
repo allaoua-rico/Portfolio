@@ -1,98 +1,39 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import Link from 'next/link';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Slide from '@mui/material/Slide';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
-import {  ThemeProvider, createTheme } from '@mui/material/styles';
+import * as React from "react";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Link from "next/link";
+import { useState } from "react";
+import { SiReact } from "react-icons/si";
 
-const bookmarks = [ 'tech', 'projects', 'contact'];
-const sections = ['Technologies', 'Projects', 'Contact'];
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const bookmarks = ["tech", "projects", "contact"];
+const sections = ["Technologies", "Projects", "Contact"];
 
 const Header = () => {
-  const theme = useTheme();
-  //on desktop true
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
-  
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    // console.log(event.target)
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
-    setAnchorElNav(event.currentTarget);
-  };
-  // const handleOpenUserMenu = (event) => {
-    //   setAnchorElUser(event.currentTarget);
-  // };
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
-
-  const handleCloseNavMenu = () => { 
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  function HideOnScroll(props) {
-    const { children} = props;
-    // if on desk the scroll trigger will be false so the Slide transition won't happen
-    const trigger = useScrollTrigger();
-    // console.log(matches)
-    return (
-      <Slide appear={false} direction="down" in={matches ? true : !trigger}>
-        {children}
-      </Slide>
-    );
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ align: true });
   }
-  // HideOnScroll.propTypes = {
-  //   children: PropTypes.element.isRequired,
-  //   window: PropTypes.func,
-  // };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-    <HideOnScroll >
-    <AppBar position="fixed" style={{background:'#324766',width:'100%'}} id='top' >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-        <div className="flex justify-between w-full items-center p-3" >
-          <div>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-              >
-                    <Link passHref href='#top' >
-                      <a className="ml-3">
-                      My Portfolio
-                      </a>
-                  </Link>
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <div className="relative">
+      <header
+        id="top"
+        className="bg-[#324766] flex justify-center 
+        sticky top-0 w-full z-50 h-[75px]"
+      >
+        <div className="max-w-6xl flex-1 p-3">
+          <div className="flex justify-between md:hidden">
+            <div className="p-3">
+              <HeaderIcon />
+            </div>
+            <div>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -103,88 +44,79 @@ const Header = () => {
               >
                 <MenuIcon />
               </IconButton>
+
               <Menu
-              
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
+                  vertical: "bottom",
+                  horizontal: "left",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
+                  vertical: "top",
+                  horizontal: "left",
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  // pr:0,
-                  // background:'grey',
-                  display: { xs: 'block', md: 'none' },
-                  // width:'100%'
+                  display: { xs: "block", md: "none" },
                 }}
-                
               >
                 {bookmarks.map((page, index) => (
-                  // <>
-                  /* { index!==0 && <Divider />} */
-                  <MenuItem 
-                  sx={{ padding:3}}
-                  key={page} 
-                  onClick={handleCloseNavMenu}
-                  divider={index!==bookmarks.length-1 ? true:false}
+                  <MenuItem
+                    sx={{ paddingX: 2, paddingY: 2 }}
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    divider={index !== bookmarks.length - 1 ? true : false}
                   >
-                    <Typography textAlign="center">
-                        <Link passHref href={'#'+page}>
-                          <a >
-                              {sections[index]}
-                          </a>
-                        </Link>
-                    </Typography>
+                    {/* <Link passHref href={"#" + page}> */}
+                    <a
+                      onClick={() => scrollTo(page)}
+                      className="font-semibold text-sm"
+                    >
+                      {sections[index]}
+                    </a>
+                    {/* </Link> */}
                   </MenuItem>
-                  //  </>
-
                 ))}
               </Menu>
-            </Box>
-          </div>
-            
-            <div>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-            >
-              <Link passHref href='#top' >
-                      <a className="ml-3">
-                      My Portfolio
-                      </a>
-                  </Link>
-
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {bookmarks.map((page,index) => (
-                  <div key={page} className='mx-2'>
-                    <Typography textAlign="center">
-                        <Link passHref href={'#'+page}>
-                          <a >
-                              {sections[index]}
-                          </a>
-                        </Link>
-                    </Typography>
-                  </div>
-                ))}
-            </Box>
             </div>
-        </div>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </HideOnScroll>
-    </ThemeProvider>
+          </div>
 
+          <div className="hidden md:flex justify-between p-2">
+            <div className="px-3">
+              <HeaderIcon />
+            </div>
+
+            <div className="flex">
+              {bookmarks.map((page, index) => (
+                <div key={page} className="mx-2">
+                  <button className="p-1">
+                    {/* <Link passHref href={"#" + page}> */}
+                    <a onClick={() => scrollTo(page)}>{sections[index]}</a>
+                    {/* </Link> */}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </header>
+      <div className="h-[75px]" />
+    </div>
   );
 };
+
+function HeaderIcon() {
+  return (
+    <div className="hover:scale-125 transition-all duration-200">
+      <SiReact
+        className="animate-[spin_5s_linear_infinite] w-7 h-7 stroke-white fill-white 
+      transition-all duration-300"
+      />
+    </div>
+  );
+}
+
 export default Header;

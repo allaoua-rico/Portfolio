@@ -1,9 +1,5 @@
-// import Image from "next/image";
 import React, { useState } from "react";
 import { front, back } from "../public/data/techData.js";
-// import Carousel from "./Carousel.js";
-// import styles from "../styles/Home.module.css";
-// import TechCard from "./TechCard.js";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
