@@ -25,7 +25,7 @@ export default function FrontEndDescription({ next }) {
   const open2 = Boolean(anchorEl2);
 
   return (
-    <ul className="list-disc gap-y-2 flex flex-col text-[#BEC6DD] ">
+    <ul className="list-disc gap-y-2 flex flex-col text-[#a7bbd6] ">
       <li>
         Optained my{" "}
         <span

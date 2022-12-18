@@ -11,14 +11,17 @@ export default function Technologies() {
   const [value, setValue] = useState(0);
   const matches = useMediaQuery("(min-width:768px)");
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleChange = (event, newValue) => setValue(newValue);
   return (
-    <div className="min-h-[560px] flex flex-col items-center gap-y-14 lg:px-0 px-5 w-screen lg:w-full max-w-[700px]">
+    <div
+      className="min-h-[560px] 
+      flex flex-col items-center gap-y-14 
+      lg:px-0 px-5
+      w-screen lg:w-full max-w-[700px]"
+    >
       <div className="flex flex-col items-center gap-y-11">
         <h2 className={` text-5xl sm:text-6xl `}>Technologies</h2>
-        <p className="ml-2 mb-4 text-2xl  text-center">
+        <p className="ml-2 mb-2 text-2xl  text-center">
           The technologies i work with are the following:
         </p>
       </div>

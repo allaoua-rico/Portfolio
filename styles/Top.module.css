@@ -1,71 +1,84 @@
-.typewriter  {
+.typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  opacity:0;
-  letter-spacing: .15em; /* Adjust as needed */
+  opacity: 0;
+  letter-spacing: 0.15em; /* Adjust as needed */
   /* animation-delay: 3s; */
 
-  animation: 
-    typing 3s steps(40, end) 7s,
-    blink-caret .75s step-end infinite 7s,
+  animation: typing 3s steps(40, end) 7s, blink-caret 0.75s step-end infinite 7s,
     vis 1s forwards 7s;
 }
 
 @keyframes vis {
-  from {opacity:0;
-}
-  to {opacity:1;
-}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100%}
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
-.laptop{
-  width:100%;
+.laptop {
+  width: 100%;
   postision: absolute;
   transform: translateX(100vw);
   animation: 2s move forwards 3.5s;
 }
-.topContainer div:nth-child(1){
+.topContainer div:nth-child(1) {
   transform: translateX(-100vw);
   animation: 1.5s move forwards;
 }
-.topContainer div:nth-child(2){
+.topContainer div:nth-child(2) {
   transform: translateX(-100vw);
-  animation:1.5s move forwards 1s;
+  animation: 1.5s move forwards 1s;
 }
-.topContainer div:nth-child(3){
+.topContainer div:nth-child(3) {
   transform: translateX(-100vw);
-  animation:2s move forwards 2s;
+  animation: 2s move forwards 2s;
 }
 
 @keyframes move {
-  from {   
+  from {
     /* transform: translateX(100vw); */
-}
-  to {   
+  }
+  to {
     transform: translateX(0);
+  }
 }
-}
-.screen{
-  animation: 2s bootUp  forwards  6s ;
+.screen {
+  animation: 2s bootUp forwards 6s;
 }
 @keyframes bootUp {
-  from { fill:initial; }
+  from {
+    fill: initial;
+  }
   /* 50%{ fill:initial;} */
-  to { fill:white;}
+  to {
+    fill: white;
+  }
 }
-.text{
-  fill:"#000"
+.text {
+  fill: "#000";
 }

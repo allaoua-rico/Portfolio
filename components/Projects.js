@@ -88,16 +88,16 @@ function ProjectInfosLink({ links }) {
   return (
     <div className="flex w-full md:justify-end gap-x-6">
       {links.github && (
-        <Link passHref href={links.github}>
-          <a>
+        <Link passHref href={links.github} >
+          <a target="_blank">
             <FiGithub className={className} />
           </a>
         </Link>
       )}
 
       {links.deployed && (
-        <Link passHref href={links.deployed}>
-          <a>
+        <Link passHref href={links.deployed} >
+          <a target="_blank">
             <FiExternalLink className={className} />
           </a>
         </Link>
@@ -110,7 +110,7 @@ function ProjectInfosTechsList({ list }) {
   return (
     <div
       className="text-[#99A2BE] 
-      flex space-x-3 md:justify-end 
+      flex space-x-3 md:justify-end flex-wrap
       md:max-w-xs"
     >
       {list?.map((el, i) => (
